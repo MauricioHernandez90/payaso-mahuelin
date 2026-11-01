@@ -1,3 +1,4 @@
+import React from 'react'
 
   const WHATSAPP = "https://wa.me/527223352454?text=Hola%20Payaso%20Mahuelin!%20%F0%9F%8E%89%20Quiero%20cotizar%20un%20show";
   
