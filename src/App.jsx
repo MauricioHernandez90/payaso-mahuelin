@@ -12,6 +12,14 @@ import React from 'react'
   };
 
 
+  const BUBBLES = [
+    ['purple',90,4,16,0],['cyan',62,11,20,2],['pink',110,19,18,1],['yellow',72,27,15,3],
+    ['orange',48,35,22,0.5],['purple',125,43,24,2.5],['cyan',58,51,19,1.5],['pink',82,59,21,4],
+    ['yellow',100,67,20,0.8],['orange',66,75,23,3.5],['purple',52,83,18,1],['cyan',96,91,25,2],
+    ['yellow',54,6,11,0],['purple',76,16,14,1.2],['orange',46,28,10,0.4],['cyan',70,41,13,2.2],
+    ['pink',60,56,12,3.5],['yellow',84,71,15,1],['purple',48,86,9,4],['cyan',94,92,17,2.8],
+  ];
+
   function SunIcon(){return (<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></svg>)}
   function MoonIcon(){return (<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>)}
 
@@ -33,30 +41,10 @@ import React from 'react'
 
     return (
       <div style={bgStyle} className="min-h-screen relative transition-all duration-700">
-                <div className="fixed inset-0 w-full h-full z-0 overflow-hidden pointer-events-none">
-          <div className="bubble-color bubble-purple" style={{width:'90px',height:'90px',left:'4%',animationDuration:'16s',animationDelay:'0s'}}></div>
-          <div className="bubble-color bubble-cyan" style={{width:'62px',height:'62px',left:'11%',animationDuration:'20s',animationDelay:'2s'}}></div>
-          <div className="bubble-color bubble-pink" style={{width:'110px',height:'110px',left:'19%',animationDuration:'18s',animationDelay:'1s'}}></div>
-          <div className="bubble-color bubble-yellow" style={{width:'72px',height:'72px',left:'27%',animationDuration:'15s',animationDelay:'3s'}}></div>
-          <div className="bubble-color bubble-orange" style={{width:'48px',height:'48px',left:'35%',animationDuration:'22s',animationDelay:'0.5s'}}></div>
-          <div className="bubble-color bubble-purple" style={{width:'125px',height:'125px',left:'43%',animationDuration:'24s',animationDelay:'2.5s'}}></div>
-          <div className="bubble-color bubble-cyan" style={{width:'58px',height:'58px',left:'51%',animationDuration:'19s',animationDelay:'1.5s'}}></div>
-          <div className="bubble-color bubble-pink" style={{width:'82px',height:'82px',left:'59%',animationDuration:'21s',animationDelay:'4s'}}></div>
-          <div className="bubble-color bubble-yellow" style={{width:'100px',height:'100px',left:'67%',animationDuration:'20s',animationDelay:'0.8s'}}></div>
-          <div className="bubble-color bubble-orange" style={{width:'66px',height:'66px',left:'75%',animationDuration:'23s',animationDelay:'3.5s'}}></div>
-          <div className="bubble-color bubble-purple" style={{width:'52px',height:'52px',left:'83%',animationDuration:'18s',animationDelay:'1s'}}></div>
-          <div className="bubble-color bubble-cyan" style={{width:'96px',height:'96px',left:'91%',animationDuration:'25s',animationDelay:'2s'}}></div>
-        </div>
-
-        <div className="fixed inset-0 w-full h-full overflow-hidden pointer-events-none" style={{zIndex:9999}}>
-          <div className="bubble-color bubble-yellow" style={{width:'54px',height:'54px',left:'6%',animationDuration:'11s',animationDelay:'0s'}}></div>
-          <div className="bubble-color bubble-purple" style={{width:'76px',height:'76px',left:'16%',animationDuration:'14s',animationDelay:'1.2s'}}></div>
-          <div className="bubble-color bubble-orange" style={{width:'46px',height:'46px',left:'28%',animationDuration:'10s',animationDelay:'0.4s'}}></div>
-          <div className="bubble-color bubble-cyan" style={{width:'70px',height:'70px',left:'41%',animationDuration:'13s',animationDelay:'2.2s'}}></div>
-          <div className="bubble-color bubble-pink" style={{width:'60px',height:'60px',left:'56%',animationDuration:'12s',animationDelay:'3.5s'}}></div>
-          <div className="bubble-color bubble-yellow" style={{width:'84px',height:'84px',left:'71%',animationDuration:'15s',animationDelay:'1s'}}></div>
-          <div className="bubble-color bubble-purple" style={{width:'48px',height:'48px',left:'86%',animationDuration:'9s',animationDelay:'4s'}}></div>
-          <div className="bubble-color bubble-cyan" style={{width:'94px',height:'94px',left:'92%',animationDuration:'17s',animationDelay:'2.8s'}}></div>
+        <div className="bubbles-layer" aria-hidden="true">
+          {BUBBLES.map(([color,size,left,dur,delay],i)=>(
+            <span key={i} className={`bubble bubble-${color}${i>=8?' bubble-extra':''}`} style={{'--size':size+'px',left:left+'%',animationDuration:dur+'s',animationDelay:delay+'s'}}/>
+          ))}
         </div>
 
         <div className="relative z-10">
